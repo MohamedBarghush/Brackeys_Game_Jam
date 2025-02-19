@@ -3,6 +3,7 @@ using StarterAssets;
 
 interface IInteractable {
     public void Interact();
+    public void Rotate();
 }
 
 public class Interactor : MonoBehaviour
@@ -21,13 +22,27 @@ public class Interactor : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        if (_inputs.interact == true) {
-            if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, rayDistance, interactionLayer)) {
-                if (hit.collider.TryGetComponent<IInteractable>(out var interactable)) {
+        if (_inputs.interact == true)
+        {
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, rayDistance, interactionLayer))
+            {
+                if (hit.collider.TryGetComponent<IInteractable>(out var interactable))
+                {
                     interactable.Interact();
                 }
             }
             _inputs.interact = false;
+        }
+        if (_inputs.rotate == true)
+        {
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, rayDistance, interactionLayer))
+            {
+                if (hit.collider.TryGetComponent<IInteractable>(out var interactable))
+                {
+                    interactable.Rotate();
+                }
+            }
+            _inputs.rotate = false;  
         }
     }
 

@@ -18,4 +18,17 @@ public class Interactable : MonoBehaviour, IInteractable
     {
         Debug.Log("I'm " + gameObject.name);
     }
+    public void Rotate()
+    {
+        transform.rotation *= Quaternion.Euler(30, 0, 0);
+        //if (transform.rotation.x < 0)
+        //{
+        //    transform.rotation *= Quaternion.Euler(30, 0, 0);
+        //}
+        //else 
+        //{
+            
+        //}
+        
+    }
 }
