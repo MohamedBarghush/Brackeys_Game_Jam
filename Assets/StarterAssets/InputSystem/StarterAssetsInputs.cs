@@ -13,6 +13,7 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool interact;
+		public bool rotate;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -45,14 +46,18 @@ namespace StarterAssets
 			SprintInput(value.isPressed);
 		}
 
-		public void OnInteract(InputValue value)
-		{
-			interact = value.isPressed;
-		}
+        public void OnInteract(InputValue value)
+        {
+            interact = value.isPressed;
+        }
+		public void OnRotate(InputValue value)
+        {
+            rotate = value.isPressed;
+        }
 #endif
 
 
-		public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
 		} 
