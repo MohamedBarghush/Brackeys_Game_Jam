@@ -27,12 +27,12 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_inputs.shoot) {
+        if (_inputs.shoot && !extended) {
             Shoot ();
             _inputs.shoot = false;
         }
         if (extended) {
-            _lineRenderer.SetPosition(0, _weapon.position);
+            _lineRenderer.SetPosition(0, _weapon.position + _weapon.forward * 0.1f);
             _lineRenderer.SetPosition(1, _extendible.position);
         }
     }
@@ -43,17 +43,23 @@ public class Weapon : MonoBehaviour
             _lineRenderer.enabled = true;
             _extendibleRb.isKinematic = false;
             _extendible.parent = null;
-            _extendibleRb.AddForce(Camera.main.transform.forward * launchForce);
+            _extendibleRb.AddForce(Camera.main.transform.forward.normalized * launchForce);
             StartCoroutine(Retract());
         }
     }
 
-    IEnumerator Retract () {
-        yield return new WaitForSeconds(2);
+    public void RetractImmediately (float timer = 1.0f) {
+        StopAllCoroutines();
+        StartCoroutine(Retract(timer));
+    }
+
+    IEnumerator Retract (float timer = 2f) {
+        yield return new WaitForSeconds(timer);
+        _extendible.GetComponent<BoxCollider>().enabled = true;
         _extendibleRb.isKinematic = true;
         _extendible.parent = _weapon.parent;
         targetPos = _initialLocalPosition;
-        _extendible.GetComponent<BoxCollider>().isTrigger = false;
+        // _extendible.GetComponent<BoxCollider>().isTrigger = false;
         while (Vector3.Distance(_extendible.localPosition, targetPos) > 0.5f) {
             _extendible.localPosition = Vector3.LerpUnclamped(_extendible.localPosition, targetPos, Time.deltaTime * retractSpeed);
             yield return null;
@@ -61,7 +67,7 @@ public class Weapon : MonoBehaviour
         _lineRenderer.enabled = false;
         _extendible.localPosition = _initialLocalPosition;
         _extendible.localRotation = Quaternion.identity;
-        _extendible.GetComponent<BoxCollider>().isTrigger = false;
+        // _extendible.GetComponent<BoxCollider>().isTrigger = false;
         extended = false;
 
     }

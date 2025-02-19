@@ -30,7 +30,7 @@ public class IPick : MonoBehaviour, IInteractable
             RoomOneManager.bottlesHeld++;
 
         RoomOneManager.instance.UpdateUI();
-        Destroy(gameObject);
+        Destroy(gameObject, 1.0f);
     }
 
     public void Check () {
