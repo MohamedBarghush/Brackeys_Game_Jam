@@ -14,6 +14,7 @@ namespace StarterAssets
 		public bool sprint;
 		public bool interact;
 		public bool shoot;
+		public bool rotate;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -55,10 +56,15 @@ namespace StarterAssets
 		{
 			shoot = value.isPressed;
 		}
+
+		public void OnRotate(InputValue value)
+        {
+            rotate = value.isPressed;
+        }
 #endif
 
 
-		public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
 		} 
