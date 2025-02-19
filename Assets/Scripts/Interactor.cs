@@ -32,7 +32,7 @@ public class Interactor : MonoBehaviour
     }
 
     void OnDrawGizmos() {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.green;
         Gizmos.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * rayDistance);
     }
 }
