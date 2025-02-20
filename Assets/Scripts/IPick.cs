@@ -9,13 +9,7 @@ public class IPick : MonoBehaviour, IInteractable
 
     public PickupType pickupType;
 
-    public bool picked = false;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private bool picked = false;
 
     // Update is called once per frame
     void Update()
@@ -27,19 +21,20 @@ public class IPick : MonoBehaviour, IInteractable
     }
 
     public void Interact (bool grabbed = false) {
-        Debug.Log("I (" + gameObject.name + ") " + "got picked up");
+        // Debugging
+        // Debug.Log("I (" + gameObject.name + ") " + "got picked up");
 
+        // Determine the pickup type
         if (pickupType == PickupType.BOOK)
             RoomOneManager.booksHeld++;
         else if (pickupType == PickupType.BOTTLE)
             RoomOneManager.bottlesHeld++;
 
-        RoomOneManager.instance.UpdateUI();
+        RoomOneManager.instance.UpdateUI(); // Update the UI
         if (!grabbed)
             Destroy(gameObject);
         else 
             picked = true;
-        // picked = true;
     }
 
     public void Check () {

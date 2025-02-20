@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class WeaponExtendible : MonoBehaviour
 {
+    ///////////////////////////////// Weapon Normal Collision logic is in WeaponExtraCollider.cs
 
     public Weapon daWeapon;
 
