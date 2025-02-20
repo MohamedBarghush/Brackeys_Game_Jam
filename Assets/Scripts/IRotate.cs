@@ -14,7 +14,7 @@ public class IRotate : MonoBehaviour, IInteractable
         
     }
 
-    public void Interact()
+    public void Interact(bool grabbed = false)
     {
         Debug.Log("I (" + gameObject.name + ") " + "will be rotated");
         transform.rotation *= Quaternion.Euler(30, 0, 0);

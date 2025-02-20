@@ -2,7 +2,7 @@ using UnityEngine;
 using StarterAssets;
 
 interface IInteractable {
-    public void Interact();
+    public void Interact(bool grabbed = false);
     // public void Check();
 }
 
