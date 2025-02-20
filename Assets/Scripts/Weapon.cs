@@ -44,7 +44,7 @@ public class Weapon : MonoBehaviour
     {
         // Update Rope Visuals
         if (extended) {
-            _lineRenderer.SetPosition(0, _weapon.position + _weapon.forward * 0.1f);
+            _lineRenderer.SetPosition(0, _weapon.position + _weapon.forward * 0.1f + _weapon.up * 0.05f);
             _lineRenderer.SetPosition(1, _extendible.position);
         }
     } 
