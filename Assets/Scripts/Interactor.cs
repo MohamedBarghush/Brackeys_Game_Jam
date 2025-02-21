@@ -1,8 +1,9 @@
 using UnityEngine;
 using StarterAssets;
 
+// Interface for interactable objects
 interface IInteractable {
-    public void Interact();
+    public void Interact(bool grabbed = false);
     // public void Check();
 }
 
@@ -12,6 +13,7 @@ public class Interactor : MonoBehaviour
     [SerializeField] private float rayDistance = 10f;
 
     private StarterAssetsInputs _inputs;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,6 +23,7 @@ public class Interactor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Raycast for interaction
         RaycastHit hit;
         if (_inputs.interact == true)
         {
@@ -33,10 +36,6 @@ public class Interactor : MonoBehaviour
             }
             _inputs.interact = false;
         }
-    }
-
-    public static void UpdateUI () {
-
     }
 
     void OnDrawGizmos() {

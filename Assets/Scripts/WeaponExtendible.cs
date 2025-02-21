@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class WeaponExtendible : MonoBehaviour
 {
+    ///////////////////////////////// Weapon Normal Collision logic is in WeaponExtraCollider.cs
 
     public Weapon daWeapon;
 
-    private Rigidbody rb;
+    [HideInInspector] public Rigidbody rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,15 +24,12 @@ public class WeaponExtendible : MonoBehaviour
         other.gameObject.TryGetComponent(out IInteractable interactable);
         if (interactable != null)
         {
-            interactable.Interact();
+            interactable.Interact(grabbed: true);
             rb.linearVelocity = Vector3.zero;
             transform.position = other.gameObject.transform.position;
+            other.transform.parent = transform;
             GetComponent<BoxCollider>().enabled = false;
-            daWeapon.RetractImmediately();
-        } else {
-            rb.linearVelocity = Vector3.zero;
-            GetComponent<BoxCollider>().enabled = false;
-            daWeapon.RetractImmediately(0);
+            daWeapon.RetractImmediately(0.5f);
         }
     }
 }
