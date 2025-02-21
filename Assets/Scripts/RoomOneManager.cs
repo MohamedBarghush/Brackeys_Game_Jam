@@ -6,7 +6,6 @@ public class RoomOneManager : MonoBehaviour
 {
     public static bool[] questsDone = new bool[3] { false, false, false };
 
-
     public static RoomOneManager instance;
 
     public static int booksHeld = 0;
@@ -18,7 +17,6 @@ public class RoomOneManager : MonoBehaviour
 
     public static int BIG_PICKUP = 0;
 
-    public static int booksReturned = 0;
     public static int bottlesReturned = 0;
 
     public UIDocument uiDoc;
@@ -51,10 +49,13 @@ public class RoomOneManager : MonoBehaviour
             }
         }
 
+        // Debug.Log("Red: " + booksReturnedArray[0] + " Blue: " + booksReturnedArray[1] + " Yellow: " + booksReturnedArray[2] + " Green: " + booksReturnedArray[3]);
+
         if (flagNotDone) {
             Debug.Log("Not done yet");
             return;
         } else {
+            Debug.Log("Books over");
             questsDone[0] = true;
             // Mark the fkin book quest as done
         }
@@ -69,6 +70,7 @@ public class RoomOneManager : MonoBehaviour
                 return;
             }
         }
+        Debug.Log("Done here");
 
         // End the fkin room at last
     }

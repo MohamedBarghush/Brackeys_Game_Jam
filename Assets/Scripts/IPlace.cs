@@ -15,7 +15,6 @@ public class IPlace : MonoBehaviour, IInteractable
 
     public void Interact(bool grabbed = false)
     {
-        Debug.Log("I reached this place");
         Interaction(ref RoomOneManager.booksHeldArray[(int)bookType]);
     }
 
@@ -26,8 +25,8 @@ public class IPlace : MonoBehaviour, IInteractable
                 RoomOneManager.instance.DisableMesh((int)bookType, true);
             
             RoomOneManager.booksHeld--;
-            RoomOneManager.booksReturned++;
             RoomOneManager.instance.UpdateUI();
+            RoomOneManager.booksReturnedArray[(int)bookType]++;
             bookMeshes[idx].SetActive(true);
             idx++;
             RoomOneManager.TriggerCheck();

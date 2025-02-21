@@ -15,7 +15,7 @@ public class WeaponExtraCollider : MonoBehaviour
         other.gameObject.TryGetComponent(out IInteractable interactable);
         if (interactable == null)
         {
-            _weaponExtendible.rb.linearVelocity = Vector3.zero;
+            if (_weaponExtendible.rb.isKinematic == false) _weaponExtendible.rb.linearVelocity = Vector3.zero;
             _weaponExtendible.GetComponent<BoxCollider>().enabled = false;
             _weaponExtendible.daWeapon.RetractImmediately(0f);
         }

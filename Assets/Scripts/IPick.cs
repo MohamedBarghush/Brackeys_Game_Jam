@@ -34,6 +34,7 @@ public class IPick : MonoBehaviour, IInteractable
 
         // Determine the pickup type
         if (pickupType == PickupType.SMALL_PICKUP) {
+            if (RoomOneManager.booksHeld == 3) return;
             RoomOneManager.booksHeldArray[(int)bookType]++;
             RoomOneManager.instance.EnableMesh((int)bookType, true);
             RoomOneManager.booksHeld++;

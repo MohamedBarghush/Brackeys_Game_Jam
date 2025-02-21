@@ -14,6 +14,7 @@ public class WeaponExtendible : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out IInteractable interactable))
         {
+            if (interactable.GetType() != typeof(IPick)) return;
             interactable.Interact(grabbed: true);
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;

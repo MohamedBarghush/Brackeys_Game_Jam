@@ -62,6 +62,7 @@ public class Weapon : MonoBehaviour
             _extendible.parent = null;
             _extendibleRb.isKinematic = false;
             _extendibleRb.AddForce(Camera.main.transform.forward.normalized * launchForce);
+            _extendible.GetComponent<BoxCollider>().enabled = true;
             StartCoroutine(Retract()); // retraction to original position
         }
     }
@@ -69,8 +70,10 @@ public class Weapon : MonoBehaviour
     // handling when picking an object
     public void RetractImmediately (float timer = 1.0f) {
         StopAllCoroutines();
-        _extendibleRb.linearVelocity = Vector3.zero;
-        _extendibleRb.angularVelocity = Vector3.zero;
+        if (_extendibleRb.isKinematic == false) {
+            _extendibleRb.linearVelocity = Vector3.zero;
+            _extendibleRb.angularVelocity = Vector3.zero;
+        }
         // _extendibleRb.isKinematic = true;
         StartCoroutine(Retract(timer));
     }
@@ -99,6 +102,6 @@ public class Weapon : MonoBehaviour
         _lineRenderer.enabled = false;
         extended = false;
         _extendibleRb.isKinematic = false;
-        _extendible.GetComponent<BoxCollider>().enabled = true;
+        _extendible.GetComponent<BoxCollider>().enabled = false;
     }
 }
