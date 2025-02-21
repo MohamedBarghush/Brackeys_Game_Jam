@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.208
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
+  m_AmbientSkyColor: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -4318,42 +4318,6 @@ PrefabInstance:
     - target: {fileID: 565115266565196026, guid: 2f5f14c5f85449040be514726b53c264, type: 3}
       propertyPath: m_Name
       value: Weapon
-      objectReference: {fileID: 0}
-    - target: {fileID: 873324562123269742, guid: 2f5f14c5f85449040be514726b53c264, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4712455556661352264, guid: 2f5f14c5f85449040be514726b53c264, type: 3}
-      propertyPath: m_Loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4712455556661352264, guid: 2f5f14c5f85449040be514726b53c264, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4712455556661352264, guid: 2f5f14c5f85449040be514726b53c264, type: 3}
-      propertyPath: m_MotionVectors
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4712455556661352264, guid: 2f5f14c5f85449040be514726b53c264, type: 3}
-      propertyPath: m_UseWorldSpace
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4712455556661352264, guid: 2f5f14c5f85449040be514726b53c264, type: 3}
-      propertyPath: m_Parameters.alignment
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4712455556661352264, guid: 2f5f14c5f85449040be514726b53c264, type: 3}
-      propertyPath: m_Parameters.textureMode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4712455556661352264, guid: 2f5f14c5f85449040be514726b53c264, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 46083645e078684438d2ca2f585f9926, type: 2}
-    - target: {fileID: 4712455556661352264, guid: 2f5f14c5f85449040be514726b53c264, type: 3}
-      propertyPath: m_Positions.Array.data[1].z
-      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8163691047646002830, guid: 2f5f14c5f85449040be514726b53c264, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9893,7 +9857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupType: 0
-  bookType: 0
+  bookType: 2
 --- !u!114 &1357647651
 MonoBehaviour:
   m_ObjectHideFlags: 0
