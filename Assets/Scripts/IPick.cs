@@ -3,14 +3,19 @@ using UnityEngine;
 public class IPick : MonoBehaviour, IInteractable
 {
     public enum PickupType {
-        BOOK,
-        BOTTLE,
-        CHAIR,
-        TABLE,
-        BARREL
+        SMALL_PICKUP,
+        BIG_PICKUP
+    }
+
+    public enum BookType {
+        RED,
+        BLUE,
+        YELLOW,
+        GREEN
     }
 
     public PickupType pickupType;
+    public BookType bookType;
 
     private bool picked = false;
 
@@ -28,16 +33,22 @@ public class IPick : MonoBehaviour, IInteractable
         // Debug.Log("I (" + gameObject.name + ") " + "got picked up");
 
         // Determine the pickup type
-        if (pickupType == PickupType.BOOK)
+        if (pickupType == PickupType.SMALL_PICKUP) {
+            RoomOneManager.booksHeldArray[(int)bookType]++;
+            RoomOneManager.instance.EnableMesh((int)bookType, true);
             RoomOneManager.booksHeld++;
-        else if (pickupType == PickupType.BOTTLE)
-            RoomOneManager.bottlesHeld++;
+        }
+        else if (pickupType == PickupType.BIG_PICKUP)
+            RoomOneManager.BIG_PICKUP++;
 
         RoomOneManager.instance.UpdateUI(); // Update the UI
         if (!grabbed)
             Destroy(gameObject);
-        else 
+        else {
+            if (TryGetComponent(out Rigidbody rb)) rb.isKinematic = true;
+            GetComponent<Collider>().enabled = false;
             picked = true;
+        }
     }
 
     public void Check () {

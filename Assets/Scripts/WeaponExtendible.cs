@@ -8,26 +8,17 @@ public class WeaponExtendible : MonoBehaviour
 
     [HideInInspector] public Rigidbody rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Start() => rb = GetComponent<Rigidbody>();
 
     void OnTriggerEnter(Collider other)
     {
-        other.gameObject.TryGetComponent(out IInteractable interactable);
-        if (interactable != null)
+        if (other.gameObject.TryGetComponent(out IInteractable interactable))
         {
             interactable.Interact(grabbed: true);
             rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
             transform.position = other.gameObject.transform.position;
-            other.transform.parent = transform;
+            other.transform.SetParent(transform);
             GetComponent<BoxCollider>().enabled = false;
             daWeapon.RetractImmediately(0.5f);
         }

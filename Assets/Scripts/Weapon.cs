@@ -19,15 +19,11 @@ public class Weapon : MonoBehaviour
     [SerializeField] private bool extended = false;
     private Vector3 _initialLocalPosition;
     private Quaternion _initialLocalRotation;
-    private Vector3 targetPos;
     #endregion
 
     //////////////////////////////////// Weapon Collision In WeaponExtendible.cs
 
-    void Awake()
-    {
-        instance = this;
-    } 
+    void Awake() => instance = this;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,7 +33,6 @@ public class Weapon : MonoBehaviour
         _initialLocalPosition = _extendible.localPosition;
         _initialLocalRotation = _extendible.localRotation;
         _extendibleRb = _extendible.GetComponent<Rigidbody>();
-        // _extendibleRb.isKinematic = true;
     }
 
     void Update()
@@ -65,6 +60,7 @@ public class Weapon : MonoBehaviour
             extended = true;
             _lineRenderer.enabled = true;
             _extendible.parent = null;
+            _extendibleRb.isKinematic = false;
             _extendibleRb.AddForce(Camera.main.transform.forward.normalized * launchForce);
             StartCoroutine(Retract()); // retraction to original position
         }
@@ -73,25 +69,36 @@ public class Weapon : MonoBehaviour
     // handling when picking an object
     public void RetractImmediately (float timer = 1.0f) {
         StopAllCoroutines();
+        _extendibleRb.linearVelocity = Vector3.zero;
+        _extendibleRb.angularVelocity = Vector3.zero;
+        // _extendibleRb.isKinematic = true;
         StartCoroutine(Retract(timer));
     }
 
     // retraction coroutine
     IEnumerator Retract (float timer = 2f) {
         yield return new WaitForSeconds(timer);
-        _extendible.GetComponent<BoxCollider>().enabled = true;
+
+        _extendibleRb.isKinematic = true;
         _extendible.parent = _weapon.parent;
-        targetPos = _initialLocalPosition;
+        _extendible.GetComponent<BoxCollider>().enabled = false;
+
+        float t = 0;
+        Vector3 startPos = _extendible.localPosition;
 
         // Retract smoothly
-        while (Vector3.Distance(_extendible.localPosition, targetPos) > 0.5f) {
-            _extendible.localPosition = Vector3.LerpUnclamped(_extendible.localPosition, targetPos, Time.deltaTime * retractSpeed);
+        while (t < 1f) {
+            t += Time.deltaTime * retractSpeed;
+            _extendible.localPosition = Vector3.Lerp(startPos, _initialLocalPosition, t);
+            _extendible.localRotation = Quaternion.Lerp(_extendible.localRotation, _initialLocalRotation, t);
             yield return null;
         }
 
-        _lineRenderer.enabled = false;
         _extendible.localPosition = _initialLocalPosition;
         _extendible.localRotation = _initialLocalRotation;
+        _lineRenderer.enabled = false;
         extended = false;
+        _extendibleRb.isKinematic = false;
+        _extendible.GetComponent<BoxCollider>().enabled = true;
     }
 }

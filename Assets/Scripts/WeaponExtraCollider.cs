@@ -17,7 +17,7 @@ public class WeaponExtraCollider : MonoBehaviour
         {
             _weaponExtendible.rb.linearVelocity = Vector3.zero;
             _weaponExtendible.GetComponent<BoxCollider>().enabled = false;
-            _weaponExtendible.daWeapon.RetractImmediately(0.1f);
+            _weaponExtendible.daWeapon.RetractImmediately(0f);
         }
     }
 }
