@@ -4,7 +4,10 @@ public class IPick : MonoBehaviour, IInteractable
 {
     public enum PickupType {
         BOOK,
-        BOTTLE
+        BOTTLE,
+        CHAIR,
+        TABLE,
+        BARREL
     }
 
     public PickupType pickupType;
