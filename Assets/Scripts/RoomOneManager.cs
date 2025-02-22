@@ -13,14 +13,21 @@ public class RoomOneManager : MonoBehaviour
     // 0: red, 1: blue, 2: yellow, 3: green
     public static int[] booksHeldArray = new int[4] { 0, 0, 0, 0 };
     public static int[] booksReturnedArray = new int[4] { 0, 0, 0, 0 };
-    public static int[] booksRequiredArray = new int[4] { 5, 2, 5, 3 };
+    public static int[] booksRequiredArray = new int[4] { 5, 2, 5, 4 };
 
     public static int BIG_PICKUP = 0;
 
     public static int booksReturned = 0;
 
+    public static int correctlyOrdered = 0;
+    public static int fixedCount = 0;
+    public static int fixedCountMax = 10;
+
     public UIDocument uiDoc;
     private Label booksHeldText;
+    private Label GATHERText;
+    private Label ORDERText;
+    private Label FIXText;
     // private Label bottlesHeldText;
 
     [SerializeField] private List<GameObject> booksIndicators;
@@ -35,6 +42,9 @@ public class RoomOneManager : MonoBehaviour
     {
         var root = uiDoc.rootVisualElement;
         booksHeldText = root.Q<Label>("booksHeld");
+        GATHERText = root.Q<Label>("Gather");
+        ORDERText = root.Q<Label>("Order");
+        FIXText = root.Q<Label>("Fix");
         // bottlesHeldText = root.Q<Label>("bottlesHeld");
 
         UpdateUI();
@@ -52,7 +62,7 @@ public class RoomOneManager : MonoBehaviour
         // Debug.Log("Red: " + booksReturnedArray[0] + " Blue: " + booksReturnedArray[1] + " Yellow: " + booksReturnedArray[2] + " Green: " + booksReturnedArray[3]);
 
         if (flagNotDone) {
-            Debug.Log("Not done yet");
+            // Debug.Log("Not done yet");
             return;
         } else {
             Debug.Log("Books over");
@@ -90,6 +100,9 @@ public class RoomOneManager : MonoBehaviour
 
     public void UpdateUI () {
         booksHeldText.text = booksHeld.ToString()+"<size=30>/3</size>";
+        GATHERText.text = "Gather: " + booksReturned + "<size=30>/15</size>";
+        ORDERText.text = "Order: " + correctlyOrdered + "<size=30>/4</size>";
+        FIXText.text = "Fix: " + fixedCount + "<size=30>/" + fixedCountMax + "</size>";
         // bottlesHeldText.text = "x"+BIG_PICKUP.ToString();
     }
 }

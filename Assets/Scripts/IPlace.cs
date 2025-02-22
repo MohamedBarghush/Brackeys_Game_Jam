@@ -13,7 +13,7 @@ public class IPlace : MonoBehaviour, IInteractable
     private int idx = 1;
     [SerializeField] private List<GameObject> bookMeshes; 
 
-    public void Interact(bool grabbed = false)
+    public void Interact(bool grabbed = false, Transform hook = null)
     {
         Interaction(ref RoomOneManager.booksHeldArray[(int)bookType]);
     }

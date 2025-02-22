@@ -15,14 +15,11 @@ public class WeaponExtendible : MonoBehaviour
         if (other.gameObject.TryGetComponent(out IInteractable interactable))
         {
             // if (interactable.GetType() != typeof(IPick)) return;
-            interactable.Interact(grabbed: true);
-            if (interactable.GetType() == typeof(IPick) && RoomOneManager.booksHeld < 3) {
-                rb.linearVelocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
-                transform.position = other.gameObject.transform.position;
-                other.transform.SetParent(transform);
-                GetComponent<BoxCollider>().enabled = false;
-            }
+            interactable.Interact(grabbed: true, hook: transform);
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            transform.position = other.gameObject.transform.position;
+            GetComponent<BoxCollider>().enabled = false;
             daWeapon.RetractImmediately(0.5f);
         }
     }

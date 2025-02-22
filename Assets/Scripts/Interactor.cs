@@ -3,7 +3,7 @@ using StarterAssets;
 
 // Interface for interactable objects
 interface IInteractable {
-    public void Interact(bool grabbed = false);
+    public void Interact(bool grabbed = false, Transform hook = null);
     // public void Check();
 }
 

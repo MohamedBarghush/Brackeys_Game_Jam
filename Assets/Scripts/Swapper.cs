@@ -27,12 +27,14 @@ public class Swapper : MonoBehaviour
         index1 = -1;
         index2 = -1;
 
+        UpdateIndicators();
+
         CheckForWin();
     }
 
     private IEnumerator SmoothSwap(GameObject jar1, GameObject jar2)
     {
-        float duration = 1.0f; // Duration of the swap
+        float duration = 0.5f; // Duration of the swap
         float elapsedTime = 0.0f;
 
         Vector3 startPos1 = jar1.transform.position;
@@ -51,6 +53,13 @@ public class Swapper : MonoBehaviour
         jar2.transform.position = startPos1;
     }
 
+    public void UpdateIndicators () {
+        foreach (GameObject jar in jars)
+        {
+            jar.GetComponent<ISwap>().UpdateIndicator();
+        }
+    }
+
     public void SetIndex(int index)
     {
         if (index1 == -1)
@@ -66,15 +75,19 @@ public class Swapper : MonoBehaviour
     void CheckForWin()
     {
         bool isOrdered = true;
-        for (int i = 0; i < jars.Count - 1; i++)
+        RoomOneManager.correctlyOrdered = 0;
+        for (int i = 0; i < jars.Count; i++)
         {
             ISwap jar1 = jars[i].GetComponent<ISwap>();
-            if (jar1.index != i)
+            if (jar1.correctIdx != jar1.index)
             {
                 isOrdered = false;
-                break;
+            } else {
+                RoomOneManager.correctlyOrdered++;
             }
         }
+
+        RoomOneManager.instance.UpdateUI();
 
         if (isOrdered)
         {
@@ -82,20 +95,19 @@ public class Swapper : MonoBehaviour
             RoomOneManager.EndLevel();
             foreach (GameObject jar in jars)
             {
+                StartCoroutine(DisableIndicators());
                 jar.GetComponent<ISwap>().enabled = false;
             }
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private IEnumerator DisableIndicators()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        yield return new WaitForSeconds(3.0f);
+        foreach (GameObject jar in jars)
+        {
+            jar.transform.GetChild(0).gameObject.SetActive(false);
+            jar.transform.GetChild(1).gameObject.SetActive(false);
+        }
     }
 }

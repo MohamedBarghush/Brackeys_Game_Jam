@@ -7,29 +7,28 @@ public class IRotate : MonoBehaviour, IInteractable
     [SerializeField] private Vector3 initialRotation;
     [SerializeField] private float moveSpeed = 2f; 
     [SerializeField] private float rotateSpeed = 2f;
+    private bool done = false;
 
-    private Coroutine movementCoroutine;
     public enum PickupType
     {
         CHAIR,
         BOTTLE
     }
     public PickupType pickupType;
-    public void Interact(bool grabbed = false)
+    public void Interact(bool grabbed = false, Transform hook = null)
     {
-        Debug.Log($"I ({gameObject.name}) will be rotated");
-        if(pickupType == PickupType.CHAIR)
+        // Debug.Log($"I ({gameObject.name}) will be rotated");
+        if(!done && !grabbed)
         {
-            if (movementCoroutine != null)
-                StopCoroutine(movementCoroutine);
-
-            movementCoroutine = StartCoroutine(SmoothMove());
+            RoomOneManager.fixedCount++;
+            done = true;
+            StartCoroutine(SmoothMove());
         }
-        else
-        {
-            transform.rotation = Quaternion.Euler(initialRotation);
-            transform.position = initialPosition;
-        }
+        // else
+        // {
+        //     transform.rotation = Quaternion.Euler(initialRotation);
+        //     transform.position = initialPosition;
+        // }
         
     }
 
@@ -44,14 +43,18 @@ public class IRotate : MonoBehaviour, IInteractable
         {
             elapsedTime += Time.deltaTime * moveSpeed;
 
-            transform.position = Vector3.Lerp(startPosition, initialPosition, elapsedTime);
+            if(pickupType == PickupType.CHAIR)
+                transform.position = Vector3.Lerp(startPosition, initialPosition, elapsedTime);
             transform.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsedTime * rotateSpeed);
 
             yield return null;
         }
 
-        transform.position = initialPosition;
+        if(pickupType == PickupType.CHAIR)
+            transform.position = initialPosition;
         transform.rotation = targetRotation;
+
+        RoomOneManager.instance.UpdateUI();
     }
 
     public void Check()

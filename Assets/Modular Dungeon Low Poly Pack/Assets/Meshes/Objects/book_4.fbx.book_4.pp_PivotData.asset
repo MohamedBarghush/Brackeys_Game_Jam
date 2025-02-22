@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 583688de1c5b4ce4e9435544090f390c, type: 3}
-  m_Name: potion_red_3.fbx.potion_red_3.pp_PivotData
+  m_Name: book_4.fbx.book_4.pp_PivotData
   m_EditorClassIdentifier: 
-  PivotDelta: {x: -0.09936763, y: -0.4273822, z: 0.0030549169}
-  OriginalMesh: {fileID: 4300000, guid: 125e397b1cf05f94cb267d5ce90fde40, type: 3}
-  ModifiedMesh: {fileID: 4300000, guid: 21e0f711729d1f645adfb4abe1671cbd, type: 2}
+  PivotDelta: {x: -0.00000009709612, y: 0.19999927, z: 0.0000003874302}
+  OriginalMesh: {fileID: 4300000, guid: 393b5d0072408ce438e1058857534542, type: 3}
+  ModifiedMesh: {fileID: 4300000, guid: 02af6215c595df044b0c2838c3d24689, type: 2}

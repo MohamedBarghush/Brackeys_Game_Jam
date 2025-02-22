@@ -28,13 +28,17 @@ public class IPick : MonoBehaviour, IInteractable
         }
     }
 
-    public void Interact (bool grabbed = false) {
+    public void Interact (bool grabbed = false, Transform hook = null) {
         // Debugging
         // Debug.Log("I (" + gameObject.name + ") " + "got picked up");
 
         // Determine the pickup type
         if (pickupType == PickupType.SMALL_PICKUP) {
             if (RoomOneManager.booksHeld == 3) return;
+            if (hook != null) {
+                transform.parent = hook;
+                transform.position = hook.position;
+            }
             RoomOneManager.booksHeldArray[(int)bookType]++;
             RoomOneManager.instance.EnableMesh((int)bookType, true);
             RoomOneManager.booksHeld++;
