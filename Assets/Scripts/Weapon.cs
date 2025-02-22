@@ -79,7 +79,7 @@ public class Weapon : MonoBehaviour
     }
 
     // retraction coroutine
-    IEnumerator Retract (float timer = 2f) {
+    IEnumerator Retract (float timer = 1f) {
         yield return new WaitForSeconds(timer);
 
         _extendibleRb.isKinematic = true;

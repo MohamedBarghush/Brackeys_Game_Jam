@@ -49,6 +49,7 @@ public class IPick : MonoBehaviour, IInteractable
             if (TryGetComponent(out Rigidbody rb)) rb.isKinematic = true;
             GetComponent<Collider>().enabled = false;
             picked = true;
+            Destroy(gameObject, 1f);
         }
     }
 

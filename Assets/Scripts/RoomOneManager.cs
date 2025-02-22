@@ -12,12 +12,12 @@ public class RoomOneManager : MonoBehaviour
 
     // 0: red, 1: blue, 2: yellow, 3: green
     public static int[] booksHeldArray = new int[4] { 0, 0, 0, 0 };
-    public static int[] booksReturnedArray = new int[4] { 1, 1, 1, 1 };
-    public static int[] booksRequiredArray = new int[4] { 6, 3, 6, 4 };
+    public static int[] booksReturnedArray = new int[4] { 0, 0, 0, 0 };
+    public static int[] booksRequiredArray = new int[4] { 5, 2, 5, 3 };
 
     public static int BIG_PICKUP = 0;
 
-    public static int bottlesReturned = 0;
+    public static int booksReturned = 0;
 
     public UIDocument uiDoc;
     private Label booksHeldText;
@@ -89,7 +89,7 @@ public class RoomOneManager : MonoBehaviour
     }
 
     public void UpdateUI () {
-        booksHeldText.text = "x"+booksHeld.ToString();
+        booksHeldText.text = booksHeld.ToString()+"<size=30>/3</size>";
         // bottlesHeldText.text = "x"+BIG_PICKUP.ToString();
     }
 }

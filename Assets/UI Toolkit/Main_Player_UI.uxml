@@ -5,8 +5,13 @@
     </engine:VisualElement>
     <engine:VisualElement style="flex-grow: 1; top: auto; height: 70%;" />
     <engine:VisualElement style="flex-grow: 1; margin-left: 30px; height: auto; margin-bottom: 30px;">
-        <engine:VisualElement style="flex-grow: 1; position: absolute; left: 0; top: auto; width: 150px; height: 100%; background-image: url(&quot;project://database/Assets/Textures/killer.png?fileID=2800000&amp;guid=647ef6ad40357f249b37372c27adf17b&amp;type=3#killer&quot;); background-position-y: center 0; background-position-x: left 0; -unity-background-scale-mode: scale-to-fit; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); border-left-width: 0;">
-            <engine:Label text="x10" name="booksHeld" style="position: relative; bottom: auto; left: 0; height: 100%; width: 100%; justify-content: center; align-self: flex-start; align-content: center; -unity-font-style: normal; color: rgb(58, 58, 58); -unity-text-align: middle-center; font-size: 60%; padding-top: 20px; padding-bottom: 20px; -unity-background-image-tint-color: rgb(0, 0, 0); -unity-font-definition: url(&quot;project://database/Assets/Fonts/RubikSprayPaint-Regular.ttf?fileID=12800000&amp;guid=1ae19aa7f6d18e540a991557ce59b80d&amp;type=3#RubikSprayPaint-Regular&quot;); -unity-text-outline-width: 5px; -unity-text-outline-color: rgb(36, 36, 36);" />
+        <engine:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Textures/Inventory%20bag.png?fileID=2800000&amp;guid=9ccff00c0eb0bc241a67b5aea835c7ea&amp;type=3#Inventory bag&quot;); width: 138px; height: 100%; position: absolute; left: 0; top: 0; -unity-background-scale-mode: scale-to-fit;">
+            <engine:Label text="3&lt;size=30&gt;/3&lt;/size&gt;" name="booksHeld" style="position: relative; bottom: -11px; left: 0; height: 139px; width: 98px; justify-content: flex-start; align-self: flex-start; align-content: center; -unity-font-style: bold; color: rgb(255, 255, 255); -unity-text-align: middle-center; font-size: 55%; -unity-background-image-tint-color: rgb(0, 0, 0); -unity-font-definition: url(&quot;project://database/Assets/Fonts/Dangrek-Regular.ttf?fileID=12800000&amp;guid=f3d48340c3d07bc43a8d4c890a863f0b&amp;type=3#Dangrek-Regular&quot;); -unity-text-outline-width: 0; -unity-text-outline-color: rgb(118, 118, 118); top: auto; margin-bottom: 4px; padding-bottom: 20px; padding-left: 0;" />
         </engine:VisualElement>
+    </engine:VisualElement>
+    <engine:VisualElement style="flex-grow: 1; position: absolute; top: 0; right: 0; height: 505px; width: 510px;">
+        <engine:Label text="Label" name="Gather" />
+        <engine:Label text="Label" name="Order" />
+        <engine:Label text="Label" />
     </engine:VisualElement>
 </engine:UXML>
