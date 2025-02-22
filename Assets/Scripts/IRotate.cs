@@ -34,7 +34,7 @@ public class IRotate : MonoBehaviour, IInteractable
 
     private IEnumerator SmoothMove()
     {
-        Vector3 startPosition = transform.position;
+        Vector3 startPosition = transform.localPosition;
         Quaternion startRotation = transform.rotation;
         Quaternion targetRotation = Quaternion.Euler(initialRotation);
 
@@ -44,14 +44,14 @@ public class IRotate : MonoBehaviour, IInteractable
             elapsedTime += Time.deltaTime * moveSpeed;
 
             if(pickupType == PickupType.CHAIR)
-                transform.position = Vector3.Lerp(startPosition, initialPosition, elapsedTime);
+                transform.localPosition = Vector3.Lerp(startPosition, initialPosition, elapsedTime);
             transform.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsedTime * rotateSpeed);
 
             yield return null;
         }
 
         if(pickupType == PickupType.CHAIR)
-            transform.position = initialPosition;
+            transform.localPosition = initialPosition;
         transform.rotation = targetRotation;
 
         RoomOneManager.instance.UpdateUI();
