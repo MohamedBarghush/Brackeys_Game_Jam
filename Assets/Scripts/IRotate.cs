@@ -20,7 +20,9 @@ public class IRotate : MonoBehaviour, IInteractable
         // Debug.Log($"I ({gameObject.name}) will be rotated");
         if(!done && !grabbed)
         {
-            RoomOneManager.fixedCount++;
+            if (pickupType == PickupType.CHAIR) AudioManager.Instance.PlaySound(SoundType.Chair);
+            else if (pickupType == PickupType.BOTTLE) AudioManager.Instance.PlaySound(SoundType.Bottel);
+                RoomOneManager.fixedCount++;
             RoomOneManager.TriggerFix();
             done = true;
             StartCoroutine(SmoothMove());
@@ -45,7 +47,11 @@ public class IRotate : MonoBehaviour, IInteractable
             elapsedTime += Time.deltaTime * moveSpeed;
 
             if(pickupType == PickupType.CHAIR)
+            {
                 transform.localPosition = Vector3.Lerp(startPosition, initialPosition, elapsedTime);
+                
+            }
+           
             transform.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsedTime * rotateSpeed);
 
             yield return null;

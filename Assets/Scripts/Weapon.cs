@@ -49,6 +49,7 @@ public class Weapon : MonoBehaviour
     {
         // Weapon Shooting
         if (_inputs.shoot && !extended) {
+            AudioManager.Instance.PlaySound(SoundType.Shoot);
             Shoot ();
             _inputs.shoot = false;
         }
@@ -64,6 +65,7 @@ public class Weapon : MonoBehaviour
             _extendibleRb.AddForce(Camera.main.transform.forward.normalized * launchForce);
             _extendible.GetComponent<BoxCollider>().enabled = true;
             StartCoroutine(Retract()); // retraction to original position
+
         }
     }
 
@@ -81,7 +83,6 @@ public class Weapon : MonoBehaviour
     // retraction coroutine
     IEnumerator Retract (float timer = 1f) {
         yield return new WaitForSeconds(timer);
-
         _extendibleRb.isKinematic = true;
         _extendible.parent = _weapon.parent;
         _extendible.GetComponent<BoxCollider>().enabled = false;

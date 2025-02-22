@@ -39,6 +39,7 @@ public class IPick : MonoBehaviour, IInteractable
                 transform.parent = hook;
                 transform.position = hook.position;
             }
+            AudioManager.Instance.PlaySound(SoundType.Book);
             RoomOneManager.booksHeldArray[(int)bookType]++;
             RoomOneManager.instance.EnableMesh((int)bookType, true);
             RoomOneManager.booksHeld++;

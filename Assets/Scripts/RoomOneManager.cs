@@ -40,6 +40,7 @@ public class RoomOneManager : MonoBehaviour
 
     void Start()
     {
+        AudioManager.Instance.PlayMusic(SoundType.BG);
         var root = uiDoc.rootVisualElement;
         booksHeldText = root.Q<Label>("booksHeld");
         GATHERText = root.Q<Label>("Gather");

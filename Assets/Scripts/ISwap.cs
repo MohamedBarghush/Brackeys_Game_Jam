@@ -12,6 +12,7 @@ public class ISwap : MonoBehaviour, IInteractable
 
     public void Interact(bool grabbed = false, Transform hook = null)
     {
+        AudioManager.Instance.PlaySound(SoundType.Barrel);
         Swapper.instance.SetIndex(index);
     }
 
