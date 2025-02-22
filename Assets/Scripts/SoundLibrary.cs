@@ -1,10 +1,14 @@
 using UnityEngine;
 public enum SoundType
 {
+    BG,
     Duck,
     Barrel,
     Book,
-    hook
+    Shoot,
+    Hook,
+    Bottel,
+    Chair
 }
 [CreateAssetMenu(fileName = "SoundLibrary", menuName = "Scriptable Objects/SoundLibrary")]
 

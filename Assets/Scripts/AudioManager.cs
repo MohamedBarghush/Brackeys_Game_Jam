@@ -29,6 +29,7 @@ public class AudioManager : MonoBehaviour
         }
         
     }
+   
 
     public void PlayMusic(SoundType soundType)
     {
