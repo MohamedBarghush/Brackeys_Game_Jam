@@ -73,6 +73,19 @@ public class RoomOneManager : MonoBehaviour
         EndLevel ();
     }
 
+    public static void TriggerFix () {
+        if (fixedCount < fixedCountMax) {
+            // Debug.Log("Not done yet");
+            return;
+        } else {
+            Debug.Log("Fixed all");
+            questsDone[1] = true;
+            // Mark the fkin fix quest as done
+        }
+
+        EndLevel ();
+    }
+
     public static void EndLevel () {
         foreach (bool end in questsDone) {
             if (!end) {
@@ -100,7 +113,7 @@ public class RoomOneManager : MonoBehaviour
 
     public void UpdateUI () {
         booksHeldText.text = booksHeld.ToString()+"<size=30>/3</size>";
-        GATHERText.text = "Gather: " + booksReturned + "<size=30>/15</size>";
+        GATHERText.text = "Gather: " + booksReturned + "<size=30>/16</size>";
         ORDERText.text = "Order: " + correctlyOrdered + "<size=30>/4</size>";
         FIXText.text = "Fix: " + fixedCount + "<size=30>/" + fixedCountMax + "</size>";
         // bottlesHeldText.text = "x"+BIG_PICKUP.ToString();

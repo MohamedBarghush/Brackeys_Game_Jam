@@ -21,6 +21,7 @@ public class IRotate : MonoBehaviour, IInteractable
         if(!done && !grabbed)
         {
             RoomOneManager.fixedCount++;
+            RoomOneManager.TriggerFix();
             done = true;
             StartCoroutine(SmoothMove());
         }

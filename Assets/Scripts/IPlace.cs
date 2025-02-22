@@ -25,12 +25,12 @@ public class IPlace : MonoBehaviour, IInteractable
                 RoomOneManager.instance.DisableMesh((int)bookType, true);
             
             RoomOneManager.booksHeld--;
-            RoomOneManager.instance.UpdateUI();
             RoomOneManager.booksReturnedArray[(int)bookType]++;
             RoomOneManager.booksReturned++;
             bookMeshes[idx].SetActive(true);
             idx++;
             RoomOneManager.TriggerCheck();
+            RoomOneManager.instance.UpdateUI();
         }
     }
 }
