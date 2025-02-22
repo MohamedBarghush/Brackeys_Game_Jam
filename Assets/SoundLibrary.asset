@@ -37,3 +37,9 @@ MonoBehaviour:
   - soundType: 7
     clips:
     - {fileID: 8300000, guid: 1cbe7fbe2f635ff42a66ff0c99717968, type: 3}
+  - soundType: 8
+    clips:
+    - {fileID: 8300000, guid: 35b895a292a12d14fb928eabf9f02882, type: 3}
+  - soundType: 9
+    clips:
+    - {fileID: 8300000, guid: e3eebd745899ac848819e69be0f40682, type: 3}

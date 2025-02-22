@@ -9,7 +9,8 @@ public enum SoundType
     Hook,
     Bottel,
     Chair,
-    Frog
+    Frog,
+    Cat
 }
 [CreateAssetMenu(fileName = "SoundLibrary", menuName = "Scriptable Objects/SoundLibrary")]
 
