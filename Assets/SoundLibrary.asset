@@ -43,3 +43,6 @@ MonoBehaviour:
   - soundType: 9
     clips:
     - {fileID: 8300000, guid: e3eebd745899ac848819e69be0f40682, type: 3}
+  - soundType: 10
+    clips:
+    - {fileID: 8300000, guid: e6481ce00e3f46d49ba9d5c7927f09d2, type: 3}
