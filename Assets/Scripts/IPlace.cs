@@ -16,6 +16,7 @@ public class IPlace : MonoBehaviour, IInteractable
     public void Interact(bool grabbed = false, Transform hook = null)
     {
         Interaction(ref RoomOneManager.booksHeldArray[(int)bookType]);
+        AudioManager.Instance.PlaySound(SoundType.Book);
     }
 
     void Interaction (ref int bookCount) {
