@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
+    public float referenceYOffset = 50f; // Height above endpoint
+    public float referenceScale = 0.8f; // Scale of reference shapes
+    private GameObject[] referenceShapes = new GameObject[4];
     [Header("Input System")]
 public InputActionAsset inputActions;
 private InputAction changeShape0;
@@ -54,6 +59,41 @@ public Camera mainCamera;
     public AudioSource audioSource;
     public AudioClip backgroundMusic;
     [Range(0, 1)] public float musicVolume = 0.5f;
+    private void CreateReferenceShapes()
+    {
+        for(int i = 0; i < endPoints.Length; i++)
+        {
+            // Get correct prefab index from requirements
+            int prefabIndex = System.Array.FindIndex(shapePrefabs, 
+                prefab => prefab.name == endPointRequirements[i]);
+
+            if(prefabIndex >= 0)
+            {
+                // Create reference shape
+                Vector3 spawnPos = endPoints[i].position + Vector3.up * referenceYOffset;
+                referenceShapes[i] = Instantiate(
+    shapePrefabs[prefabIndex], 
+    spawnPos, 
+    Quaternion.Euler(0, 270, 0) // Rotates 270 degrees on Y-axis
+);
+
+
+                // Disable physics and make static
+                Rigidbody rb = referenceShapes[i].GetComponent<Rigidbody>();
+                if(rb != null)
+                {
+                    rb.isKinematic = true;
+                    rb.detectCollisions = false;
+                }
+
+                // Scale and color adjustments
+                referenceShapes[i].transform.localScale *= referenceScale;
+                
+                // Optional: Change material or add outline effect
+                // Add your custom visual treatment here
+            }
+        }
+    }
     private void Start()
     {
         if(audioSource == null)
@@ -73,12 +113,14 @@ public Camera mainCamera;
         for(int i = 0; i < shapePrefabs.Length; i++)
         {
             endPointRequirements[i] = shapePrefabs[i].name;
+            
         }
+        CreateReferenceShapes();
 
         InitializeLevel();
     }
 
-    private void InitializeLevel()
+    public void InitializeLevel()
 {
     // Stop all path coroutines
     for(int i = 0; i < movementCoroutines.Length; i++)
@@ -91,14 +133,14 @@ public Camera mainCamera;
     }
 
     // Clear existing shapes
-    for(int i = 0; i < activeShapes.Length; i++)
-    {
-        if(activeShapes[i] != null)
+   for(int i = 0; i < activeShapes.Length; i++)
         {
-            Destroy(activeShapes[i]);
-            activeShapes[i] = null;
+            if(activeShapes[i] != null && activeShapes[i] != referenceShapes[i])
+            {
+                Destroy(activeShapes[i]);
+                activeShapes[i] = null;
+            }
         }
-    }
 
     lockedPaths.Clear();
     
@@ -308,16 +350,20 @@ private IEnumerator AdvanceLevel()
     Debug.Log($"LEVEL {currentLevel} COMPLETE!");
 
     // Check BEFORE incrementing
-    if(currentLevel >= maxLevels)
+    if (currentLevel >= maxLevels)
     {
         Debug.Log("YOU BEAT ALL 3 LEVELS! FINAL VICTORY!");
+        // Load the next scene using the active scene's build index + 1
+        UnityEngine.SceneManagement.SceneManager.LoadScene(
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
         gameActive = false;
         isAdvancing = false;
         yield break;
     }
 
-    currentLevel++;  // Move increment AFTER the check
+    currentLevel++;  // Increment level for the next round
 
+    // Update moveSpeed and spawn delay for the next level
     moveSpeed = baseMoveSpeed + (currentLevel * speedIncreasePerLevel);
     spawnMaxDelay = Mathf.Max(0.5f, baseSpawnMaxDelay - (currentLevel * spawnDelayReduction));
     
