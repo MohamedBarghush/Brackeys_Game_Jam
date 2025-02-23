@@ -11,11 +11,11 @@ public class GameManager : MonoBehaviour
     public float referenceScale = 0.8f; // Scale of reference shapes
     private GameObject[] referenceShapes = new GameObject[4];
     [Header("Input System")]
-public InputActionAsset inputActions;
-private InputAction changeShape0;
-private InputAction changeShape1;
-private InputAction changeShape2;
-private InputAction changeShape3;
+    public InputActionAsset inputActions;
+    private InputAction changeShape0;
+    private InputAction changeShape1;
+    private InputAction changeShape2;
+    private InputAction changeShape3;
     public GameObject[] shapePrefabs;
     public Transform[] startPoints;
     public Transform[] endPoints;
@@ -117,6 +117,8 @@ public Camera mainCamera;
             
         }
         CreateReferenceShapes();
+
+        Cursor.lockState = CursorLockMode.None;
 
         InitializeLevel();
     }
