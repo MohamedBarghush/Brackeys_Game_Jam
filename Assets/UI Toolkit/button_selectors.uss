@@ -1,7 +1,13 @@
 .button:hover {
     color: rgb(255, 255, 255);
+    scale: 1.1 1.1;
+    -unity-text-outline-color: rgba(255, 255, 255, 0);
+    -unity-font-definition: url("project://database/Assets/Fonts/Dangrek-Regular.ttf?fileID=12800000&guid=f3d48340c3d07bc43a8d4c890a863f0b&type=3#Dangrek-Regular");
+    font-size: 100px;
+    transition-duration: 0.35s;
 }
 
 .button {
     color: rgb(183, 183, 183);
+    transition-duration: 0.35s;
 }
