@@ -1,6 +1,7 @@
 using UnityEngine;
 using StarterAssets;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Weapon : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Weapon : MonoBehaviour
     public static Weapon instance;
 
     private StarterAssetsInputs _inputs;
+    private bool paused = false;
 
     [Header("Weapon Settings")]
     [SerializeField] private LineRenderer _lineRenderer;
@@ -33,6 +35,8 @@ public class Weapon : MonoBehaviour
         _initialLocalPosition = _extendible.localPosition;
         _initialLocalRotation = _extendible.localRotation;
         _extendibleRb = _extendible.GetComponent<Rigidbody>();
+        paused = false;
+        // RoomOneManager.instance.PauseGame(paused);
     }
 
     void Update()
@@ -41,6 +45,14 @@ public class Weapon : MonoBehaviour
         if (extended) {
             _lineRenderer.SetPosition(0, _weapon.position + _weapon.forward * 0.1f + _weapon.up * 0.05f);
             _lineRenderer.SetPosition(1, _extendible.position);
+        }
+
+        if (_inputs.pause) {
+            // Pause Menu
+            // PauseMenu.instance.TogglePauseMenu();
+            paused = !paused;
+            RoomOneManager.instance.PauseGame(paused);
+            _inputs.pause = false;
         }
     } 
 

@@ -1,4 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -23,11 +26,15 @@ public class RoomOneManager : MonoBehaviour
     public static int fixedCount = 0;
     public static int fixedCountMax = 10;
 
+    public static float timer = 240f;
+
     public UIDocument uiDoc;
     private Label booksHeldText;
     private Label GATHERText;
     private Label ORDERText;
     private Label FIXText;
+    private Label timerText;
+    private VisualElement pausedText;
     // private Label bottlesHeldText;
 
     [SerializeField] private List<GameObject> booksIndicators;
@@ -40,15 +47,51 @@ public class RoomOneManager : MonoBehaviour
 
     void Start()
     {
+        timer = 240f;
+        booksHeldArray = new int[4] { 0, 0, 0, 0 };
+        booksReturnedArray = new int[4] { 0, 0, 0, 0 };
+        booksRequiredArray = new int[4] { 5, 2, 5, 4 };
+        BIG_PICKUP = 0;
+        booksReturned = 0;
+        correctlyOrdered = 0;
+        fixedCount = 0;
+        fixedCountMax = 10;
+        booksHeld = 0;
+
+
         AudioManager.Instance.PlayMusic(SoundType.BG);
         var root = uiDoc.rootVisualElement;
         booksHeldText = root.Q<Label>("booksHeld");
         GATHERText = root.Q<Label>("Gather");
         ORDERText = root.Q<Label>("Order");
         FIXText = root.Q<Label>("Fix");
-        // bottlesHeldText = root.Q<Label>("bottlesHeld");
+        timerText = root.Q<Label>("Timer");
+        pausedText = root.Q<VisualElement>("Paused");
 
         UpdateUI();
+    }
+
+    void Update()
+    {
+
+        if (timer <= 0) {
+            AudioManager.Instance.PlaySound(SoundType.TryAgain);
+            Invoke("RestartLevel", 2f);
+        } else {
+            timer -= Time.deltaTime;
+            int minutes = Mathf.FloorToInt(timer / 60F);
+            int seconds = Mathf.FloorToInt(timer % 60F);
+            timerText.text = string.Format("{0:0}:{1:00}", minutes, seconds);
+        }
+    }
+
+    public void PauseGame (bool paused) {
+        Time.timeScale = paused ? 0 : 1;
+        pausedText.style.display = paused ? DisplayStyle.Flex : DisplayStyle.None;
+    }
+
+    public void RestartLevel () {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
     public static void TriggerCheck () {
@@ -95,8 +138,14 @@ public class RoomOneManager : MonoBehaviour
             }
         }
         Debug.Log("Done here");
+        instance.StartCoroutine(instance.EndIt());
 
         // End the fkin room at last
+    }
+
+    IEnumerator EndIt () {
+        yield return new WaitForSeconds(3.0f);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void EnableMesh (int index, bool book = false) {

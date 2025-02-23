@@ -54,9 +54,15 @@
                     "name": "Shoot",
                     "type": "Button",
                     "id": "2244007d-9f25-4d53-9e6d-4237bf2ce600",
-                    "name": "Rotate",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
                     "type": "Button",
-                    "id": "62fe6150-69cc-4fc4-bac3-08620882fc48",
+                    "id": "20ea3ea0-3b5f-4be3-b14b-997aa2189659",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -254,13 +260,22 @@
                 {
                     "name": "",
                     "id": "63112176-d8fc-4878-bcee-52599c7c55f2",
-                    "id": "1dde4943-86a8-4b6f-b73d-1d153745f8f3",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardMouse",
                     "action": "Shoot",
-                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "73151bf9-2914-4622-839f-629fc3f2d123",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardMouse",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -5,6 +5,8 @@ public class Lightning : MonoBehaviour
 {
     [SerializeField] private Color targetColor;
 
+    public GameObject cinematic;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,7 +38,9 @@ public class Lightning : MonoBehaviour
         }
 
         RenderSettings.ambientLight = targetColor; // Ensure the color is set to black at the end
+    }
 
-        
+    public void EndCinematic () {
+        cinematic.SetActive(false);
     }
 }

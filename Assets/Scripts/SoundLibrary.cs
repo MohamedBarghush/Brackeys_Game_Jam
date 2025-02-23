@@ -11,7 +11,9 @@ public enum SoundType
     Chair,
     Frog,
     Cat,
-    Bear
+    Bear,
+    TryAgain,
+    AcquireWeapon
 }
 [CreateAssetMenu(fileName = "SoundLibrary", menuName = "Scriptable Objects/SoundLibrary")]
 

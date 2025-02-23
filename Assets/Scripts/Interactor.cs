@@ -1,5 +1,6 @@
 using UnityEngine;
 using StarterAssets;
+using System.Collections.Generic;
 
 // Interface for interactable objects
 interface IInteractable {
@@ -13,6 +14,9 @@ public class Interactor : MonoBehaviour
     [SerializeField] private float rayDistance = 10f;
 
     private StarterAssetsInputs _inputs;
+
+    public bool weaponAcquired = false;
+    
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
