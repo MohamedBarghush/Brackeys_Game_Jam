@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -43,6 +41,8 @@ public class RoomOneManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     } 
 
     void Start()

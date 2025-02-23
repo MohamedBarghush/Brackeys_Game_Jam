@@ -36,6 +36,7 @@ public class Weapon : MonoBehaviour
         _initialLocalRotation = _extendible.localRotation;
         _extendibleRb = _extendible.GetComponent<Rigidbody>();
         paused = false;
+        
         // RoomOneManager.instance.PauseGame(paused);
     }
 
