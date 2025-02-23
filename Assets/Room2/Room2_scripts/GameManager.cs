@@ -96,7 +96,8 @@ public Camera mainCamera;
     }
     private void Start()
     {
-        if(audioSource == null)
+        Cursor.lockState = CursorLockMode.None;
+        if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.volume = soundVolume;
