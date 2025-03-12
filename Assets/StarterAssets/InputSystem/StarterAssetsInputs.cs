@@ -15,6 +15,7 @@ namespace StarterAssets
 		public bool interact;
 		public bool shoot;
 		public bool pause;
+		public bool skip;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -60,6 +61,11 @@ namespace StarterAssets
 		public void OnPause(InputValue value)
 		{
 			pause = value.isPressed;
+		}
+
+		public void OnSkip(InputValue value)
+		{
+			skip = value.isPressed;
 		}
 #endif
 

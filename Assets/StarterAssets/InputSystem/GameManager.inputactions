@@ -1,0 +1,34 @@
+{
+    "name": "GameManager",
+    "maps": [
+        {
+            "name": "New action map",
+            "id": "0d2ed563-c71b-4ce2-8383-06c6721557b3",
+            "actions": [
+                {
+                    "name": "Skip",
+                    "type": "Button",
+                    "id": "6e022f83-2cdd-4b75-909f-5918f330e54f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "72997934-6f0b-4bda-b56c-573bb00c92b8",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

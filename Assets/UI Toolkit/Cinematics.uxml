@@ -1,0 +1,5 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement style="flex-grow: 1;">
+        <engine:Label text="press F to skip cinematic" style="bottom: 15px; align-items: center; align-self: center; align-content: flex-end; transform-origin: center; position: absolute; font-size: 25px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/Dangrek-Regular.ttf?fileID=12800000&amp;guid=f3d48340c3d07bc43a8d4c890a863f0b&amp;type=3#Dangrek-Regular&quot;); right: 50px; color: rgb(63, 63, 63);" />
+    </engine:VisualElement>
+</engine:UXML>

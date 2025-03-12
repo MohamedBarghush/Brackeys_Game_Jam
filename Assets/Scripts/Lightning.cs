@@ -1,11 +1,16 @@
 using System.Collections;
 using UnityEngine;
+using StarterAssets;
+using UnityEngine.Playables;
 
 public class Lightning : MonoBehaviour
 {
     [SerializeField] private Color targetColor;
 
     public GameObject cinematic;
+    public GameObject UI;
+    public PlayableDirector director;
+    private bool skipped = false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -17,10 +22,19 @@ public class Lightning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.F)&& !skipped)
+        {
+            
+            director.time = 34.0;
+            director.Evaluate();
+            skipped = true;
+            Destroy(gameObject, 6.2f);
+            UI.SetActive(false);
+        }
     }
 
     public void TurnLightsOff () {
+        UI.SetActive(false);
         StartCoroutine(FadeToBlack());
     }
 
